@@ -1,6 +1,6 @@
 {
   "name": "iol-trading-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "trading"
   ],
   "author": "Ivan Klimberg",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "babel-loader": "^8.0.5",
