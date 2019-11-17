@@ -21,16 +21,23 @@ export const getHourSum = () => {
 }
 
 export const roundPrice = price => {
-    if (precio > 100) {
-        const precioStrings = precio.toFixed(1).split('.');
-        const lastDigitRounded = Math.ceil(parseInt(precioStrings[1]) / 5) * 5;
-        return `${precioStrings[0]}.${lastDigitRounded}`;
+    if (price > 100) {
+        const priceStrings = price.toFixed(1).split('.');
+        const lastDigitRounded = Math.ceil(parseInt(priceStrings[1]) / 5) * 5;
+        return `${priceStrings[0]}.${lastDigitRounded}`;
     } else if (precio > 50) {
-        const precioFinal = precio.toFixed(1);
-        return precioFinal;
-    } else {
-        const precioStrings = precio.toFixed(2).split('.');
-        const lastDigitRounded = Math.ceil(parseInt(precioStrings[1]) / 5) * 5;
-        return `${precioStrings[0]}.${lastDigitRounded}`;
+        const finalPrice = price.toFixed(1);
+        return finalPrice;
     }
+    const priceStrings = price.toFixed(2).split('.');
+    const lastDigitRounded = Math.ceil(parseInt(priceStrings[1]) / 5) * 5;
+    return `${priceStrings[0]}.${lastDigitRounded}`;
+    
+}
+
+export default {
+    formatDate,
+    addZeroIf2Digits,
+    getHourSum,
+    roundPrice
 }
