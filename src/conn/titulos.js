@@ -1,25 +1,24 @@
 import { BASE_URL, getToken, getIolHttpHeaders } from './base';
+import { get } from 'axios';
 
 export const getTitulo = async (simbolo, mercado) => {
     if (!mercado) mercado = 'bcba';
     const token = await getToken();
     const headers = getIolHttpHeaders(token);
-    const response = await fetch(`${BASE_URL}/api/v2/${mercado}/Titulos/${simbolo}`, {
+    const response = await get(`${BASE_URL}/api/v2/${mercado}/Titulos/${simbolo}`, {
         headers
     })
-    const json = await response.json();
-    return json;
+    return response.data;
 }
 
 export const getCotizacion =  async (simbolo, mercado) => {
     if (!mercado) mercado = 'bcba';
     const token = await getToken();
     const headers = getIolHttpHeaders(token);
-    const response = await fetch(`${BASE_URL}/api/v2/${mercado}/Titulos/${simbolo}/cotizacion`, {
+    const response = await get(`${BASE_URL}/api/v2/${mercado}/Titulos/${simbolo}/cotizacion`, {
         headers
     })
-    const json = await response.json();
-    return json;
+    return response.data;
 }
 
 export const getCotizacionHistorica = async (simbolo, fechaDesde, fechaHasta, ajustada, mercado)  => {
@@ -31,22 +30,20 @@ export const getCotizacionHistorica = async (simbolo, fechaDesde, fechaHasta, aj
         ajustadaString = 'sinAjustar';
     const token = await getToken();
     const headers = getIolHttpHeaders(token);
-    const response = await fetch(`${BASE_URL}/api/v2/${mercado}/Titulos/${simbolo}/cotizacion/seriehistorica/${fechaDesde}/${fechaHasta}/${ajustadaString}`, {
+    const response = await get(`${BASE_URL}/api/v2/${mercado}/Titulos/${simbolo}/cotizacion/seriehistorica/${fechaDesde}/${fechaHasta}/${ajustadaString}`, {
         headers
     })
-    const json = await response.json();
-    return json;
+    return response.data;
 }
 
 export const getPanelCotizacion = async (instrumento, panel, pais) => {
     if(!pais) pais = 'argentina';
     const token = await getToken();
     const headers = getIolHttpHeaders(token);
-    const response = await fetch(`${BASE_URL}/api/v2/cotizaciones/${instrumento}/${panel}/${pais}`, {
+    const response = await get(`${BASE_URL}/api/v2/cotizaciones/${instrumento}/${panel}/${pais}`, {
         headers
     })
-    const json = await response.json();
-    return json;   
+    return response.data;   
 }
 
 export default {

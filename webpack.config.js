@@ -19,5 +19,6 @@ module.exports = {
     },
     resolve: {
       extensions: ['.js'],
-    }
+    },
+    target: 'node'
 }

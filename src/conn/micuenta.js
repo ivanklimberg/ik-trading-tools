@@ -1,13 +1,13 @@
 import { BASE_URL, getToken, getIolHttpHeaders } from './base';
+import axios from 'axios';
 
 export const getPortafolio = async pais => {
     const token = await getToken();
     const headers = getIolHttpHeaders(token);
-    const response = await fetch(`${BASE_URL}/api/v2/portafolio/${pais}`, {
+    const response = await axios.get(`${BASE_URL}/api/v2/portafolio/${pais}`, {
         headers
     })
-    const json = await response.json();
-    return json;
+    return response.data;
 }
 
 export const getOperaciones = async numero => {
@@ -17,11 +17,10 @@ export const getOperaciones = async numero => {
     if(numero) {
         numeroOperacion = `/${numero}`;
     }
-    const response = await fetch(`${BASE_URL}/api/v2/operaciones${numeroOperacion}`, {
+    const response = await axios.get(`${BASE_URL}/api/v2/operaciones${numeroOperacion}`, {
         headers
     });
-    const json = await response.json();
-    return json;
+    return response.data;
 }
 
 export const getOperacion = async numero => {
@@ -31,12 +30,10 @@ export const getOperacion = async numero => {
 export const deleteOperacion = async numero => {
     const token = await getToken();
     const headers = getIolHttpHeaders(token);
-    const response = await fetch(`${BASE_URL}/api/v2/operaciones/${numero}`, {
-        method: 'DELETE',
+    const response = await axios.delete(`${BASE_URL}/api/v2/operaciones/${numero}`, {
         headers
     })
-    const json = await response.json();
-    return json;
+    return response.data;
 }
 
 export default {
