@@ -36,8 +36,18 @@ export const deleteOperacion = async numero => {
     return response.data;
 }
 
+export const getEstadoCuenta = async () => {
+    const token = await getToken();
+    const headers = getIolHttpHeaders(token);
+    const response = await axios.get(`${BASE_URL}/api/v2/estadocuenta`, {
+        headers
+    });
+    return response.data;
+}
+
 export default {
     getPortafolio,
+    getEstadoCuenta,
     getOperaciones,
     getOperacion,
     deleteOperacion
